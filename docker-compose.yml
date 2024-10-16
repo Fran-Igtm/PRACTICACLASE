@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  nodeapp: #aplicacion creada con node desde el docker file
+    build: .
+    container_name: contenedordesdedockerfile
+    ports:
+      - "3000:3000"
+    links: #para crear un enlace entre contenedores
+      - mongo
+    depends_on: #para asegurar que la base de datos 
+      - mongo
+  mongo:
+    image: mongo
+    container_name: contenedordesdedockercompose
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=isen
+      - MONGO_INITDB_ROOT_PASSWORD=dwes
+    
+
+
+
